@@ -27,7 +27,10 @@ backend:
       # ssl:
       #   ca: # if you have a CA file and want to verify it you can uncomment this section
       #     $file: <file-path>/ca/server.crt
-
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_ACCESS_TOKEN} # this should be the token from GitHub
 catalog:
   # Overrides the default list locations from app-config.yaml as these contain example data.
   # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
