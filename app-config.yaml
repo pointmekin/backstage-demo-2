@@ -53,6 +53,9 @@ integrations:
   github:
     - host: github.com
       token: ${GITHUB_ACCESS_TOKEN} # this should be the token from GitHub
+  gitlab:
+    - host: gitlab.com
+      token: ${GITLAB_ACCESS_OKEN} # this should be the token from GitLab
 
 proxy:
   ### Example for how to add a proxy endpoint for the frontend.
@@ -81,6 +84,14 @@ auth:
       development:
         clientId: ${GITHUB_CLIENT_ID}
         clientSecret: ${GITHUB_CLIENT_SECRET}
+    gitlab:
+      development:
+        clientId: ${GITLAB_CLIENT_ID}
+        clientSecret: ${GITLAB_CLIENT_SECRET}
+        ## uncomment if using self-hosted GitLab
+        # audience: https://gitlab.company.com
+        ## uncomment if using a custom redirect URI
+        # callbackUrl: https://${BASE_URL}/api/auth/gitlab/handler/frame
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
@@ -106,7 +117,11 @@ catalog:
       rules:
         - allow: [Template]
     - type: url
-      target: https://github.com/MoniOrg/moni-microservice/tree/go-backstage-template/template.yaml
+      target: https://github.com/MoniOrg/moni-microservice/blob/main/template.yaml
+      rules:
+        - allow: [Template]
+    - type: url
+      target: https://gitlab.com/pointmekin/go-template-gitlab/-/blob/main/template.yaml
       rules:
         - allow: [Template]
 
