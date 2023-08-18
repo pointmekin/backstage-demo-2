@@ -1,0 +1,13 @@
+{
+  "Example snippet": {
+    "scope": "puml, plantuml",
+    "prefix": "puml-boilerplate",
+    "body": [
+      "```kroki-plantuml",
+      "@startuml title",
+      "$1",
+      "@enduml",
+      "```"
+    ]
+  }
+}
