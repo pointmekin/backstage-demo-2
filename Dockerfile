@@ -15,11 +15,11 @@ RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {
 FROM node:16-buster-slim AS build
 
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && \
-    apt-get install -y --no-install-recommends python3 g++ build-essential && \
-    yarn config set python /usr/bin/python3
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked 
+RUN --mount=type=cache,target=/var/lib/apt,sharing=locked 
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends python3 g++ build-essential --fix-missing
+RUN yarn config set python /usr/bin/python3
 
 RUN apt-get update && apt-get install -y python3 python3-pip
 RUN pip3 install mkdocs-techdocs-core==1.1.7
@@ -56,11 +56,11 @@ RUN mkdir packages/backend/dist/skeleton packages/backend/dist/bundle \
 FROM node:16-buster-slim
 
 # Install isolate-vm dependencies, these are needed by the @backstage/plugin-scaffolder-backend.
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && \
-    apt-get install -y --no-install-recommends python3 g++ build-essential && \
-    yarn config set python /usr/bin/python3
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked 
+RUN --mount=type=cache,target=/var/lib/apt,sharing=locked 
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends python3 g++ build-essential --fix-missing
+RUN yarn config set python /usr/bin/python3
 
 # Install sqlite3 dependencies. You can skip this if you don't use sqlite3 in the image,
 # in which case you should also move better-sqlite3 to "devDependencies" in package.json.
